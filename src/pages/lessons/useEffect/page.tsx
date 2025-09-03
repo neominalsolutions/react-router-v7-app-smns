@@ -22,7 +22,7 @@ const UseEffectComponent = () => {
 	);
 };
 
- function UseEffectLessonPage() {
+function UseEffectLessonPage() {
 	const [visible, setVisible] = useState(true);
 
 	useEffect(() => {
@@ -35,6 +35,8 @@ const UseEffectComponent = () => {
 			{' '}
 			{visible && <UseEffectComponent />}{' '}
 			{/* visible true ise component render edilir. false ise render edilmez. Yani koşullu render */}
+			<FetchApiComponent />
+			<br></br>
 			<button onClick={() => setVisible(!visible)}>Toggle Component</button>
 		</>
 	);
@@ -78,5 +80,19 @@ export function FetchApiComponent() {
 		return <p>Error: {error['message']}</p>;
 	}
 
-	if (data) return <> Veri Adeti: {data?.length}</>;
+	if (data)
+		return (
+			<>
+				{' '}
+				<br></br> Veri Adeti: {data?.length}
+                {/* map de dinamik olarak apiden çekilen bilgileri state üzerinden ekrana liste halinde basmamızı sağlar. */}
+				{data.map((item: any) => {
+					return (
+						<div key={item.id}>
+							<h3>{item.title}</h3>
+						</div>
+					);
+				})}
+			</>
+		);
 }
