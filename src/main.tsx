@@ -5,12 +5,13 @@ import {
 	Outlet,
 	RouterProvider,
 } from 'react-router';
-import Home from './pages/site/home/page';
-import About from './pages/site/about/page';
-import Layout from './layouts/site/layout';
 import AdminLayout from './layouts/admin/layout';
-import UseStateLessonPage from './pages/lessons/useState/page';
+import Layout from './layouts/site/layout';
+import PropsLessonPage from './pages/lessons/Props/page';
 import UseEffectLessonPage from './pages/lessons/useEffect/page';
+import UseStateLessonPage from './pages/lessons/useState/page';
+import About from './pages/site/about/page';
+import Home from './pages/site/home/page';
 
 // import './index.css';
 
@@ -32,9 +33,9 @@ const router = createBrowserRouter([
 				Component: () => (
 					<>
 						<div>Lessons</div>
-						<Link to="usestate">useState Lesson</Link>
-						<br />
-						<Link to="useeffect">useEffect Lesson</Link>
+						<Link to="usestate">useState Lesson</Link>|
+						<Link to="useeffect">useEffect Lesson</Link>|
+						<Link to="props">Props Lesson</Link>
 						<Outlet />
 					</>
 				),
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
 					{
 						path: 'useeffect',
 						Component: UseEffectLessonPage,
+					},
+					{
+						path: 'props',
+						Component: PropsLessonPage,
 					},
 				],
 			},
