@@ -7,6 +7,7 @@ import {
 } from 'react-router';
 import AdminLayout from './layouts/admin/layout';
 import Layout from './layouts/site/layout';
+import ClassComponentLessonPage from './pages/lessons/classComponents/page';
 import PropsLessonPage from './pages/lessons/Props/page';
 import UseEffectLessonPage from './pages/lessons/useEffect/page';
 import UseStateLessonPage from './pages/lessons/useState/page';
@@ -35,7 +36,8 @@ const router = createBrowserRouter([
 						<div>Lessons</div>
 						<Link to="usestate">useState Lesson</Link>|
 						<Link to="useeffect">useEffect Lesson</Link>|
-						<Link to="props">Props Lesson</Link>
+						<Link to="props">Props Lesson</Link> |
+						<Link to="classComponents">Class Component Lesson</Link>
 						<Outlet />
 					</>
 				),
@@ -51,6 +53,10 @@ const router = createBrowserRouter([
 					{
 						path: 'props',
 						Component: PropsLessonPage,
+					},
+					{
+						path: 'classComponents',
+						Component: ClassComponentLessonPage,
 					},
 				],
 			},
