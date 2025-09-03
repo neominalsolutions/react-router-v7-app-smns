@@ -9,7 +9,7 @@
 // State reactda asenkron çalışır. State değişimini consoleda doğru gözlemleyemeyiz. React Developer Tools ile state değişimlerini izleyebiliriz.
 // Bir function componente istediğimiz kadar birbirinden bağımsız useState hook'u ekleyebiliriz.
 // Hooklar sadece Function componentlere özgüdür. Class componentlerde kullanılamaz.
-import React from 'react';
+import React, { useState } from 'react';
 
 type NameState = {
 	// class,interface,array,union type bunların hepsi referans type
@@ -17,7 +17,7 @@ type NameState = {
 };
 // component içerisinde belirli bir durumu takip eden özel functionlarada hook denir.
 function UseStateLessonPage() {
-	const [random, setRandom] = React.useState<number>(0); // Angular variable değişkenler 	// value type
+	const [random, setRandom] = useState<number>(0); // Angular variable değişkenler 	// value type
 	const [nameState, setNameState] = React.useState<NameState>({ name: '' }); // NameState type
 	const onClickHandler = (): void => {
 		const newRandom = Math.round(Math.random() * 1);
