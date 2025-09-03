@@ -13,6 +13,7 @@ import UseEffectLessonPage from './pages/lessons/useEffect/page';
 import UseStateLessonPage from './pages/lessons/useState/page';
 import About from './pages/site/about/page';
 import Home from './pages/site/home/page';
+import UseRefLessonPage from './pages/lessons/useRef/page';
 
 // import './index.css';
 
@@ -37,7 +38,8 @@ const router = createBrowserRouter([
 						<Link to="usestate">useState Lesson</Link>|
 						<Link to="useeffect">useEffect Lesson</Link>|
 						<Link to="props">Props Lesson</Link> |
-						<Link to="classComponents">Class Component Lesson</Link>
+						<Link to="classComponents">Class Component Lesson</Link>|
+						<Link to="useRef">Use Ref Hook</Link>
 						<Outlet />
 					</>
 				),
@@ -57,6 +59,10 @@ const router = createBrowserRouter([
 					{
 						path: 'classComponents',
 						Component: ClassComponentLessonPage,
+					},
+					{
+						path: 'useRef',
+						Component: UseRefLessonPage,
 					},
 				],
 			},
