@@ -1,9 +1,15 @@
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router';
+import {
+	createBrowserRouter,
+	Link,
+	Outlet,
+	RouterProvider,
+} from 'react-router';
 import Home from './pages/site/home/page';
 import About from './pages/site/about/page';
 import Layout from './layouts/site/layout';
 import AdminLayout from './layouts/admin/layout';
+import UseStateLessonPage from './pages/lessons/useState/page';
 
 // import './index.css';
 
@@ -19,6 +25,25 @@ const router = createBrowserRouter([
 			{
 				path: 'about',
 				Component: About,
+			},
+			{
+				path: 'lessons',
+				Component: () => (
+					<>
+						<div>Lessons</div>
+						<Link to="usestate">useState Lesson</Link>
+						<br />
+						<Link to="useeffect">useEffect Lesson</Link>
+						<Outlet />
+					</>
+				),
+				children: [
+					{
+						path: 'usestate',
+						Component: UseStateLessonPage,
+					},
+					{},
+				],
 			},
 		],
 	},
