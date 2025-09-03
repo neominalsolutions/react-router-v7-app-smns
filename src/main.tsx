@@ -10,6 +10,7 @@ import About from './pages/site/about/page';
 import Layout from './layouts/site/layout';
 import AdminLayout from './layouts/admin/layout';
 import UseStateLessonPage from './pages/lessons/useState/page';
+import UseEffectLessonPage from './pages/lessons/useEffect/page';
 
 // import './index.css';
 
@@ -42,7 +43,10 @@ const router = createBrowserRouter([
 						path: 'usestate',
 						Component: UseStateLessonPage,
 					},
-					{},
+					{
+						path: 'useeffect',
+						Component: UseEffectLessonPage,
+					},
 				],
 			},
 		],
