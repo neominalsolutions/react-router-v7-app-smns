@@ -20,6 +20,7 @@ import About from './pages/site/about/page';
 import Home from './pages/site/home/page';
 import UseContextDemoPage from './pages/lessons/UseContext/page';
 import { ThemeProvider } from './contexts/theme/theme.provider';
+import { UseReducerPage } from './pages/lessons/useReducer/page';
 
 // import './index.css';
 
@@ -46,7 +47,8 @@ const router = createBrowserRouter([
 						<Link to="props">Props Lesson</Link> |
 						<Link to="classComponents">Class Component Lesson</Link>|
 						<Link to="useRef">Use Ref Hook</Link>|
-						<Link to="useContext">Use Context</Link>
+						<Link to="useContext">Use Context</Link>|
+						<Link to="useReducer">Use Reducer</Link>
 						<Outlet />
 					</>
 				),
@@ -74,6 +76,10 @@ const router = createBrowserRouter([
 					{
 						path: 'useContext',
 						Component: UseContextDemoPage,
+					},
+					{
+						path: 'useReducer',
+						Component: UseReducerPage,
 					},
 				],
 			},
