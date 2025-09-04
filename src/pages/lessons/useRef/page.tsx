@@ -4,9 +4,15 @@
 // render tetiklenmesini istemediğimiz durumlarda useRef kullanmak performans açısından faydalı olabilir.
 
 import { useEffect, useRef, useState } from 'react';
+import { ThemeContext, type ThemeContextType } from '../UseContext/page';
+import React from 'react';
 
 function UseRefLessonPage() {
 	// js tarafında document.getElementById('id') ile elemente erişmeye benzer.
+
+	const { state } = React.useContext(ThemeContext) as ThemeContextType;
+	console.log('state', state);
+
 	const inputRef = useRef<HTMLInputElement>(null);
 	const renderCount = useRef(0);
 	let _renderCount = 0; // useRef tanımlamadığımız için her renderda sıfırlar.

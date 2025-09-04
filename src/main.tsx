@@ -10,14 +10,17 @@ import Layout from './layouts/site/layout';
 import ClassComponentLessonPage from './pages/lessons/classComponents/page';
 import PropsLessonPage from './pages/lessons/Props/page';
 import UseEffectLessonPage from './pages/lessons/useEffect/page';
+import UseRefLessonPage from './pages/lessons/useRef/page';
 import UseStateLessonPage from './pages/lessons/useState/page';
+import HierarchycalComponentsPage from './pages/memoisation/HierarchycalComponents/page';
+import MemoPage from './pages/memoisation/Memo/page';
+import UseCallbackPage from './pages/memoisation/UseCallback/page';
+import UseMemoPage from './pages/memoisation/UseMemo/page';
 import About from './pages/site/about/page';
 import Home from './pages/site/home/page';
-import UseRefLessonPage from './pages/lessons/useRef/page';
-import MemoPage from './pages/memoisation/Memo/page';
-import UseMemoPage from './pages/memoisation/UseMemo/page';
-import UseCallbackPage from './pages/memoisation/UseCallback/page';
-import HierarchycalComponentsPage from './pages/memoisation/HierarchycalComponents/page';
+import UseContextDemoPage, {
+	ThemeProvider,
+} from './pages/lessons/UseContext/page';
 
 // import './index.css';
 
@@ -44,6 +47,7 @@ const router = createBrowserRouter([
 						<Link to="props">Props Lesson</Link> |
 						<Link to="classComponents">Class Component Lesson</Link>|
 						<Link to="useRef">Use Ref Hook</Link>|
+						<Link to="useContext">Use Context</Link>
 						<Outlet />
 					</>
 				),
@@ -67,6 +71,10 @@ const router = createBrowserRouter([
 					{
 						path: 'useRef',
 						Component: UseRefLessonPage,
+					},
+					{
+						path: 'useContext',
+						Component: UseContextDemoPage,
 					},
 				],
 			},
@@ -117,6 +125,10 @@ const router = createBrowserRouter([
 	},
 ]);
 
+// Aşağıdaki gibi uygulamadaki tüm sayfalardan context'in son güncel değerine erişmek istersek o zaman uygulamanın en dışına sarmallama yaparız.
+// Not: Uygulama tarayıcıdan refresh edildiğinde global state, context yeniden oluşur. güncel state kaybolur.
 createRoot(document.getElementById('root')!).render(
-	<RouterProvider router={router} />
+	<ThemeProvider>
+		<RouterProvider router={router} />
+	</ThemeProvider>
 );
