@@ -16,6 +16,8 @@ import Home from './pages/site/home/page';
 import UseRefLessonPage from './pages/lessons/useRef/page';
 import MemoPage from './pages/memoisation/Memo/page';
 import UseMemoPage from './pages/memoisation/UseMemo/page';
+import UseCallbackPage from './pages/memoisation/UseCallback/page';
+import HierarchycalComponentsPage from './pages/memoisation/HierarchycalComponents/page';
 
 // import './index.css';
 
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
 						<Link to="useeffect">useEffect Lesson</Link>|
 						<Link to="props">Props Lesson</Link> |
 						<Link to="classComponents">Class Component Lesson</Link>|
-						<Link to="useRef">Use Ref Hook</Link>
+						<Link to="useRef">Use Ref Hook</Link>|
 						<Outlet />
 					</>
 				),
@@ -77,6 +79,8 @@ const router = createBrowserRouter([
 						<Link to="useMemo">UseMemo</Link>
 						{'|'}
 						<Link to="useCallback">UseCallback</Link> <Outlet />
+						{'|'}
+						<Link to="hierarchycal">Hierarchycal Component</Link>
 					</>
 				),
 				children: [
@@ -87,6 +91,14 @@ const router = createBrowserRouter([
 					{
 						path: 'useMemo',
 						Component: UseMemoPage,
+					},
+					{
+						path: 'useCallback',
+						Component: UseCallbackPage,
+					},
+					{
+						path: 'hierarchycal',
+						Component: HierarchycalComponentsPage,
 					},
 				],
 			},

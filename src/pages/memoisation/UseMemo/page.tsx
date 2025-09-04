@@ -1,5 +1,11 @@
 import React, { useMemo } from 'react';
 
+// Önemli Not:
+// useMemo kullanırken asenkron fonksiyonlar kullanılmaz.
+// promise verileri memoize edilemez.
+// Veri filtereleme, gruplama, sıralama gibi işlemler için kullanılır.
+// useMemo, useEffect gibi hooklar componentin en üstünde tanımlanır.
+// Hooklar, Koşul içinde, döngü içinde, function içinde kullanılmaz.
 function UseMemoPage() {
 	const [count, setCount] = React.useState(0);
 	// const val = 1;
