@@ -10,7 +10,9 @@ function Layout() {
 		<>
 			<h1>Layout</h1>
 			<Link to="/">Home</Link> | <Link to="/about">About</Link>|{' '}
-			<Link to="/admin">Admin</Link>| <Link to="/lessons/">Lessons</Link> <hr />
+			<Link to="/admin">Admin</Link>| <Link to="/lessons/">Lessons</Link>|{' '}
+			<Link to="/memoisation/">Memoisation</Link>
+			<hr />
 			<main>
 				<Outlet />
 			</main>

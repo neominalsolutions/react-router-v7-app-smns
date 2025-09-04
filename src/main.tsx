@@ -14,6 +14,8 @@ import UseStateLessonPage from './pages/lessons/useState/page';
 import About from './pages/site/about/page';
 import Home from './pages/site/home/page';
 import UseRefLessonPage from './pages/lessons/useRef/page';
+import MemoPage from './pages/memoisation/Memo/page';
+import UseMemoPage from './pages/memoisation/UseMemo/page';
 
 // import './index.css';
 
@@ -63,6 +65,28 @@ const router = createBrowserRouter([
 					{
 						path: 'useRef',
 						Component: UseRefLessonPage,
+					},
+				],
+			},
+			{
+				path: 'memoisation',
+				Component: () => (
+					<>
+						<Link to="memo">React.Memo</Link>
+						{'|'}
+						<Link to="useMemo">UseMemo</Link>
+						{'|'}
+						<Link to="useCallback">UseCallback</Link> <Outlet />
+					</>
+				),
+				children: [
+					{
+						path: 'memo',
+						Component: MemoPage,
+					},
+					{
+						path: 'useMemo',
+						Component: UseMemoPage,
 					},
 				],
 			},
