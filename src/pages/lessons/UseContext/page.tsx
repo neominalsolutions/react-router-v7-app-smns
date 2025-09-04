@@ -22,6 +22,8 @@ import { createContext, useContext, useState, type ReactNode } from 'react';
 </A> */
 }
 
+// useState,useEffect, useRef, useLayoutEffect, useMemo, useCallback, useReducer, custom (useFetcher)
+
 type ThemeColor = {
 	bgColor: string;
 	color: string;
@@ -46,6 +48,7 @@ export type ThemeContextType = {
 	// tema değiştirmek için kullanılacak context tipi
 	state: ThemeState; // temanın güncel stati
 	toggle(): void; // light yada dark temaya geçiş
+	onRefresh(): void;
 };
 
 export const ThemeContext = createContext<ThemeContextType | null>(null);
@@ -57,16 +60,28 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
 		color: lighThemeColor,
 	});
 
+	const onRefresh = () => {
+		const jsonString = localStorage.getItem('themeState');
+
+		if (jsonString) {
+			const themeState = JSON.parse(jsonString);
+			setState({ ...themeState });
+		}
+	};
+
 	// setState
 	const toggle = () => {
 		state.isDark = !state.isDark;
 		state.color = state.isDark ? darkThemeColor : lighThemeColor;
 		setState({ ...state });
+		// persist ettik.
+		localStorage.setItem('themeState', JSON.stringify(state));
 	};
 
 	const values = {
 		state, // güncel state
 		toggle, // setState
+		onRefresh,
 	};
 
 	// values ile children arasında ThemeContext.Provider üzerinden verinin taşınması için ThemeContext.Provider value tanımlası yaptık
@@ -114,14 +129,12 @@ function ComponentThree() {
 function UseContextDemoPage() {
 	return (
 		<>
-			<ThemeProvider>
-				<hr></hr>
-				<ComponentOne />
-				<hr></hr>
-				<ComponentTwo />
-				<hr></hr>
-				<ComponentThree />
-			</ThemeProvider>
+			<hr></hr>
+			<ComponentOne />
+			<hr></hr>
+			<ComponentTwo />
+			<hr></hr>
+			<ComponentThree />
 		</>
 	);
 }
