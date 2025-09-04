@@ -1,9 +1,7 @@
 import { useContext, useLayoutEffect } from 'react';
 import { Link, Outlet } from 'react-router';
-import {
-	ThemeContext,
-	type ThemeContextType,
-} from '../../pages/lessons/UseContext/page';
+import type { ThemeContextType } from '../../contexts/theme/theme.state';
+import { ThemeContext } from '../../contexts/theme/theme.context';
 
 // ikinci bir dosya dışarı çıkılacak ise named export kullanılır.
 export function A() {

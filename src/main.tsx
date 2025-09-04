@@ -18,9 +18,8 @@ import UseCallbackPage from './pages/memoisation/UseCallback/page';
 import UseMemoPage from './pages/memoisation/UseMemo/page';
 import About from './pages/site/about/page';
 import Home from './pages/site/home/page';
-import UseContextDemoPage, {
-	ThemeProvider,
-} from './pages/lessons/UseContext/page';
+import UseContextDemoPage from './pages/lessons/UseContext/page';
+import { ThemeProvider } from './contexts/theme/theme.provider';
 
 // import './index.css';
 
