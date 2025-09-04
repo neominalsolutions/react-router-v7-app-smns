@@ -21,6 +21,7 @@ import Home from './pages/site/home/page';
 import UseContextDemoPage from './pages/lessons/UseContext/page';
 import { ThemeProvider } from './contexts/theme/theme.provider';
 import { UseReducerPage } from './pages/lessons/useReducer/page';
+import CustomHookLessonPage from './pages/lessons/customHook/page';
 
 // import './index.css';
 
@@ -48,7 +49,8 @@ const router = createBrowserRouter([
 						<Link to="classComponents">Class Component Lesson</Link>|
 						<Link to="useRef">Use Ref Hook</Link>|
 						<Link to="useContext">Use Context</Link>|
-						<Link to="useReducer">Use Reducer</Link>
+						<Link to="useReducer">Use Reducer</Link>|
+						<Link to="customHook">Custom Hook</Link>
 						<Outlet />
 					</>
 				),
@@ -80,6 +82,10 @@ const router = createBrowserRouter([
 					{
 						path: 'useReducer',
 						Component: UseReducerPage,
+					},
+					{
+						path: 'customHook',
+						Component: CustomHookLessonPage,
 					},
 				],
 			},
