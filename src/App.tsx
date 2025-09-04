@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react';
+import { type ReactNode } from 'react';
 import './App.css';
 
 const Container = ({ children }: { children: ReactNode }) => {
@@ -23,6 +23,8 @@ const Row = ({ children }: { children: ReactNode }) => {
 };
 
 function App() {
+	// context state değiştiriyor.
+
 	// jsx file
 	// <>...</> fragment syntax
 	return (
