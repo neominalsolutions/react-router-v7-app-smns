@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form, useActionData } from 'react-router';
 import { boolean, object, string } from 'yup';
+import { saveTodos } from '../../../../services/todo.service';
 
 const todoSchema = object({
 	title: string().lowercase().required('Title boş geçilemez'),
@@ -12,6 +13,7 @@ export const TodoFormAction = async ({ request }: any) => {
 	const title = formData.get('title');
 	const completed = formData.get('completed') === 'on' ? true : false;
 
+	// axios ile bir api post isteği
 	const data = { title, completed };
 	console.log('data', data);
 
@@ -20,8 +22,9 @@ export const TodoFormAction = async ({ request }: any) => {
 		await todoSchema.validate(data, { abortEarly: false });
 		// validasyon kontroller yapılabilir
 		// validasyon gerçekleşmez ise error throw eder
-		return { message: 'Başarılı', status: 200, errors: [] };
+		await saveTodos(data);
 	} catch (error: any) {
+		console.log('error', error);
 		if (error.name === 'ValidationError') {
 			// Yup hatalarını key-value şeklinde döndür
 			const errors = error.inner.reduce((item: any, key: any) => {

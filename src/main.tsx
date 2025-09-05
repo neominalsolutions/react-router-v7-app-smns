@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { createRoot } from 'react-dom/client';
 import {
 	createBrowserRouter,
@@ -27,6 +28,7 @@ import TodosLessonPage from './pages/lessons/react-router-v7-features/Todos/page
 import TodoFormLessonPage, {
 	TodoFormAction,
 } from './pages/lessons/react-router-v7-features/TodoForm/page';
+import ErrorPage from './pages/error';
 
 const MemoPage = React.lazy(() => import('./pages/memoisation/Memo/page'));
 const UseMemoPage = React.lazy(
@@ -125,17 +127,32 @@ const router = createBrowserRouter([
 							// Birden fazla servsi buraya bağlayıp tek bir response olarak döndürebiliriz
 							return { todos: await getTodos(), users: await getUsers() };
 						},
-						errorElement: (
-							<div>Veri Yüklenirken sayfada bir hata meydana geldi!</div>
-						),
+						ErrorBoundary: ErrorPage,
+						// errorElement: (
+						// 	<div>Veri Yüklenirken sayfada bir hata meydana geldi!</div>
+						// ),
+					},
+					{
+						path: 'todos/:id/:name',
+						Component: TodosLessonPage,
+						loader: async (request: any) => {
+							// id parametresine göre belki servise istek atıcam.
+							console.log('sayfa load edilmeden ', request.params);
+							// Component veri hazır hale getirilmeden doma mount edilmez.
+							// sayfa daha doma mounted edilmeden veri yükleme işlemin öncesinde yapar.
+							// Birden fazla servsi buraya bağlayıp tek bir response olarak döndürebiliriz
+							return { todos: await getTodos(), users: await getUsers() };
+						},
+						ErrorBoundary: ErrorPage,
+						// errorElement: (
+						// 	<div>Veri Yüklenirken sayfada bir hata meydana geldi!</div>
+						// ),
 					},
 					{
 						path: 'todosForm',
 						Component: TodoFormLessonPage,
 						action: TodoFormAction,
-						errorElement: (
-							<div>Veri Yüklenirken sayfada bir hata meydana geldi!</div>
-						),
+						ErrorBoundary: ErrorPage,
 					},
 				],
 			},
