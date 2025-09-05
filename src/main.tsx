@@ -21,9 +21,12 @@ import { UseReducerPage } from './pages/lessons/useReducer/page';
 import CustomHookLessonPage from './pages/lessons/customHook/page';
 import React from 'react';
 import LazyLessonPage from './pages/lessons/lazy/page';
-import TodosLessonPage from './pages/lessons/react-router-v7-features/TodoForm/page';
 import { getTodos } from './services/todo.service';
 import { getUsers } from './services/user.service';
+import TodosLessonPage from './pages/lessons/react-router-v7-features/Todos/page';
+import TodoFormLessonPage, {
+	TodoFormAction,
+} from './pages/lessons/react-router-v7-features/TodoForm/page';
 
 const MemoPage = React.lazy(() => import('./pages/memoisation/Memo/page'));
 const UseMemoPage = React.lazy(
@@ -71,7 +74,8 @@ const router = createBrowserRouter([
 						<Link to="useReducer">Use Reducer</Link>|
 						<Link to="customHook">Custom Hook</Link>|
 						<Link to="reactLazy">React Lazy</Link>|
-						<Link to="todos">Loader Data</Link>
+						<Link to="todos">Loader Data</Link>|
+						<Link to="todosForm">Todos Form</Link>|
 						<Outlet />
 					</>
 				),
@@ -121,6 +125,14 @@ const router = createBrowserRouter([
 							// Birden fazla servsi buraya bağlayıp tek bir response olarak döndürebiliriz
 							return { todos: await getTodos(), users: await getUsers() };
 						},
+						errorElement: (
+							<div>Veri Yüklenirken sayfada bir hata meydana geldi!</div>
+						),
+					},
+					{
+						path: 'todosForm',
+						Component: TodoFormLessonPage,
+						action: TodoFormAction,
 						errorElement: (
 							<div>Veri Yüklenirken sayfada bir hata meydana geldi!</div>
 						),
