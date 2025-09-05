@@ -21,6 +21,9 @@ import { UseReducerPage } from './pages/lessons/useReducer/page';
 import CustomHookLessonPage from './pages/lessons/customHook/page';
 import React from 'react';
 import LazyLessonPage from './pages/lessons/lazy/page';
+import TodosLessonPage from './pages/lessons/react-router-v7-features/TodoForm/page';
+import { getTodos } from './services/todo.service';
+import { getUsers } from './services/user.service';
 
 const MemoPage = React.lazy(() => import('./pages/memoisation/Memo/page'));
 const UseMemoPage = React.lazy(
@@ -67,7 +70,8 @@ const router = createBrowserRouter([
 						<Link to="useContext">Use Context</Link>|
 						<Link to="useReducer">Use Reducer</Link>|
 						<Link to="customHook">Custom Hook</Link>|
-						<Link to="reactLazy">React Lazy</Link>
+						<Link to="reactLazy">React Lazy</Link>|
+						<Link to="todos">Loader Data</Link>
 						<Outlet />
 					</>
 				),
@@ -107,6 +111,19 @@ const router = createBrowserRouter([
 					{
 						path: 'reactLazy',
 						Component: LazyLessonPage,
+					},
+					{
+						path: 'todos',
+						Component: TodosLessonPage,
+						loader: async () => {
+							// Component veri hazır hale getirilmeden doma mount edilmez.
+							// sayfa daha doma mounted edilmeden veri yükleme işlemin öncesinde yapar.
+							// Birden fazla servsi buraya bağlayıp tek bir response olarak döndürebiliriz
+							return { todos: await getTodos(), users: await getUsers() };
+						},
+						errorElement: (
+							<div>Veri Yüklenirken sayfada bir hata meydana geldi!</div>
+						),
 					},
 				],
 			},
