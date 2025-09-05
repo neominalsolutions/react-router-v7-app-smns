@@ -12,16 +12,32 @@ import PropsLessonPage from './pages/lessons/Props/page';
 import UseEffectLessonPage from './pages/lessons/useEffect/page';
 import UseRefLessonPage from './pages/lessons/useRef/page';
 import UseStateLessonPage from './pages/lessons/useState/page';
-import HierarchycalComponentsPage from './pages/memoisation/HierarchycalComponents/page';
-import MemoPage from './pages/memoisation/Memo/page';
-import UseCallbackPage from './pages/memoisation/UseCallback/page';
-import UseMemoPage from './pages/memoisation/UseMemo/page';
+
 import About from './pages/site/about/page';
 import Home from './pages/site/home/page';
 import UseContextDemoPage from './pages/lessons/UseContext/page';
 import { ThemeProvider } from './contexts/theme/theme.provider';
 import { UseReducerPage } from './pages/lessons/useReducer/page';
 import CustomHookLessonPage from './pages/lessons/customHook/page';
+import React from 'react';
+import LazyLessonPage from './pages/lessons/lazy/page';
+
+const MemoPage = React.lazy(() => import('./pages/memoisation/Memo/page'));
+const UseMemoPage = React.lazy(
+	() => import('./pages/memoisation/UseMemo/page')
+);
+
+const UseCallbackPage = React.lazy(
+	() => import('./pages/memoisation/UseCallback/page')
+);
+
+const HierarchycalComponentsPage = React.lazy(
+	() => import('./pages/memoisation/HierarchycalComponents/page')
+);
+
+const MemoisationLayout = React.lazy(
+	() => import('./layouts/memoisation/layout')
+);
 
 // import './index.css';
 
@@ -50,7 +66,8 @@ const router = createBrowserRouter([
 						<Link to="useRef">Use Ref Hook</Link>|
 						<Link to="useContext">Use Context</Link>|
 						<Link to="useReducer">Use Reducer</Link>|
-						<Link to="customHook">Custom Hook</Link>
+						<Link to="customHook">Custom Hook</Link>|
+						<Link to="reactLazy">React Lazy</Link>
 						<Outlet />
 					</>
 				),
@@ -87,21 +104,15 @@ const router = createBrowserRouter([
 						path: 'customHook',
 						Component: CustomHookLessonPage,
 					},
+					{
+						path: 'reactLazy',
+						Component: LazyLessonPage,
+					},
 				],
 			},
 			{
 				path: 'memoisation',
-				Component: () => (
-					<>
-						<Link to="memo">React.Memo</Link>
-						{'|'}
-						<Link to="useMemo">UseMemo</Link>
-						{'|'}
-						<Link to="useCallback">UseCallback</Link> <Outlet />
-						{'|'}
-						<Link to="hierarchycal">Hierarchycal Component</Link>
-					</>
-				),
+				Component: MemoisationLayout,
 				children: [
 					{
 						path: 'memo',
